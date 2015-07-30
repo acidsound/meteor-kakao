@@ -1,6 +1,6 @@
 Package.describe({
   name: 'spectrum:kakao',
-  version: '0.0.1',
+  version: '0.0.2',
   summary: 'Kakao OAuth flow',
   git: 'https://github.com/acidsound/meteor-kakao',
   documentation: 'README.md'
