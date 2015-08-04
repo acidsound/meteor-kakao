@@ -1,9 +1,7 @@
 Kakao = {};
 
 OAuth.registerService('kakao', 2, null, function (query) {
-
     var requestAccess = getAccessToken(query);
-    kakaoAppRegister(requestAccess);
     var identity = JSON.parse(getIdentity(requestAccess));
     identity.properties.name = identity.properties.nickname;
     return {
@@ -43,21 +41,6 @@ var getAccessToken = function (query) {
         throw new Error("Failed to complete OAuth handshake with Kakao. " + response.data.error);
     } else {
         return response.data;
-    }
-};
-
-var kakaoAppRegister = function (requestAccess) {
-    var authorization = requestAccess.token_type + " " + requestAccess.access_token;
-    try {
-        var response = HTTP.post(
-            "https://kapi.kakao.com/v1/user/signup", {
-                headers: {
-                    Authorization: authorization,
-                    "Content-Type": "application/x-www-form-urlencoded;charset=utf-8"
-                }
-            });
-    } catch (err) {
-        console.log("error", err);
     }
 };
 
